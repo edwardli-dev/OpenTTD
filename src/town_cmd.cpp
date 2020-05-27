@@ -1798,9 +1798,9 @@ static void DoCreateTown(Town *t, TileIndex tile, uint32 townnameparts, TownSize
 	t->larger_town = city;
 
 	int x = (int)size * 16 + 3;
-	if (size == TSZ_RANDOM) x = (Random() & 0xF) + 8;
+	if (size == TSZ_RANDOM) x = (Random() & 0x3) + 6;
 	/* Don't create huge cities when founding town in-game */
-	if (city && (!manual || _game_mode == GM_EDITOR)) x *= _settings_game.economy.initial_city_size;
+	if (city && (!manual || _game_mode == GM_EDITOR)) x = x + (6 * _settings_game.economy.initial_city_size);
 
 	t->cache.num_houses += x;
 	UpdateTownRadius(t);
